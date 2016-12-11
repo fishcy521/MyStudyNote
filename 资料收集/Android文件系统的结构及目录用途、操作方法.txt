@@ -1,0 +1,105 @@
+1、android文件系统的结构
+
+android源码编译后得到system.img,ramdisk.img,userdata.img映像文件。其中， ramdisk.img是emulator的文件系统，system.img包括了主要的包、库等文件，userdata.img包括了一些用户数据，emulator加载这3个映像文件后，会把 system和 userdata分别加载到 ramdisk文件系统中的system和 userdata目录下。因此，我们可以把ramdisk.img里的所有文件复制出来，system.img和userdata.img分别解压到 ramdisk文件系统中的system和 userdata目录下。
+
+2、分离android文件系统出来
+
+system.img,ramdisk.img,userdata.img映像文件是采用cpio打包、gzip压缩的，可以通过file命令验证：
+file ramdisk.img，输出：
+ramdisk.img: gzip compressed data, from Unix, last modified: Wed Mar 18 17:16:10 2009
+Android源码编译后除了生成system.img，userdata.img之外还生成system和 userdata文件夹，因此不需要解压它们。Android源码编译后还生成root文件夹，其实root下的文件与 ramdisk.img 里的文件是一样的，不过这里还是介绍怎样把 ramdisk.img解压出来:
+将ramdisk.img复制一份到任何其他目录下，将其名称改为ramdisk.img.gz，并使用命令
+gunzip ramdisk.img.gz
+然后新建一个文件夹，叫ramdisk吧，进入，输入命令
+cpio -i -F ../ramdisk.img
+这下，你就能看见并操作ramdisk里面的内容了。
+然后把Android源码编译后生成的system和 userdata里的文件复制到 ramdisk/system和 ramdisk/userdata下。这样就得到一个文件系统了。
+
+3、使用网络文件系统方式挂载android文件系统
+
+因此，我们需要建立/nfsroot目录，再建立/nfsroot/androidfs目录，把刚才的android文件系统改名为androidfs，并链接到/nfsroot/androidfs
+
+4、android内核引导文件系统
+
+android内核挂载/nfsroot/androidfs之后，根据init.rc,init.goldfish.rc来初始化并装载系统库、程序等直到开机完成。init.rc脚本包括了文件系统初始化、装载的许多过程。init.rc的工作主要是：
+1）设置一些环境变量
+2）创建system、sdcard、data、cache等目录
+3）把一些文件系统mount到一些目录去，如，mount tmpfs tmpfs /sqlite_stmt_journals
+4）设置一些文件的用户群组、权限
+5）设置一些线程参数
+6）设置TCP缓存大小
+
+5、操作android的一些方法
+
+您应该已经知道，Android 的核心作业系统是Linux (现在用的版本是2.6.25)。因此内部的档案系统，与系统目录等，也和Linux 脱不了关系。要如何观察这些系统目录，到底藏了什么秘密呢？
+在Eclipse 环境中，你可以用DDMS 来观察。不过这个DDMS 在我的电脑上的执行速度，实在太慢了。我个人的偏好是，直接用adb shell 来观察。
+
+启动adb shell 的用法如下：
+1). 在Windows 中，开启一个命令列视窗（或执行cmd.exe 这个程式）
+2). cd <android-sdk-install_path>/tools
+3). adb shell
+
+当你看到这个# 提示字元时，就表示你已经进入模拟器的系统。接下来，你就可以用Linux 上的指令来浏览这些目录。像是 cd, ls, pwd, cat, rm 等等。
+这里面，有几个目录是和Android 相关的，特地将他整理下来，供你参考。
+
+
+
+/system/app
+预载入应用程式执行档(*.apk)，都是放在这。像是Alarm Clock, Browser, Contacts, Maps,... 等等。
+
+/system/framework
+这里放 Android 系统的核心程式库。像是core.jar, framework-res.apk, com.google.android.gtalkservice.jar,...等等。
+虽然许多程式库都是以jar 结尾的，不过里面Java classes 还是以dex 格式存在着。
+
+
+
+/system/media/audio/(notification, alarms, ringtones, ui)
+这里放系统的声音档，像是闹铃声，来电铃声等等。这些声音档，多是 ogg 格式。
+
+
+
+/data/anr/traces.txt
+当你的应用程式发生ANR (Application is Not Responding) 错误时，Android 会自动将问题点的code stack list 写在这个档案内，你直接用cat 命令就可以看他的内容。
+
+
+
+/data/app
+/system/app 放的是系统预载的应用程式执行档。而这里放的是使用者自己安装的应用程式执行档(*.apk)。
+
+
+
+/data/data/<app-package-name>
+当你在程式中用Context.openFileOutput() 所建立的档案，都放在这个目录下的files 子目录内。而用Context.getSharedPreferences() 所建立的preferences 档(*.xml) ，则是放在shared_pref 这个子目录中。
+
+
+
+/data/location/gps
+这里看起来，应该是给GPS location provider 用的。其中的 properties 档案的内容如下：
+requiresNetwork false
+requiresSatellite false
+requiresCell false
+hasMonetaryCost false
+supportsAltitude true
+supportsBearing true
+supportsSpeed true
+repeat true
+accuracy 100
+powerRequirement 1
+
+没猜错的话，这应该是用来描述GPS location provider 有那些功能的。
+
+
+
+/data/system/location/location.gps
+这个档案也是个一般文字档。主要是记录最后的经纬度座标。 LocationManager.getLastKnownLocation() 就在来这抓值的。
+
+
+
+/data/property/persist.sys.timezone
+这个档案也是个一般文字档。主要是记录目前系统所使用的时区。在我的模拟器上，他记录着Asia/Taipei 这个字串。
+
+
+最后，下面这两个指令，也很好用。他可以帮你将外部档案，复制到模拟器的系统档案目录内，也可以将模拟器内的档案，复制到外部系统上。
+
+adb push <local> <remote> - copy file/dir to device
+adb pull <remote> <local> - copy file/dir from device
