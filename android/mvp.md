@@ -1,7 +1,7 @@
 # Mosby MVP使用文档
 
 > 索引
-> 
+>
 > *   [入门](#1)
 >     *   [MVP简介](#1.1)
 >     *   [Mosby简介](#1.2)
@@ -28,7 +28,7 @@ MVP的出发点是关注点分离，将视图和业务逻辑解耦。Model-View-
 
 **消极视图**：在MVP中，View是**消极视图(Passive View)**，也就是说它尽量不去主动做事，而是让Presenter通过抽象方式控制View，例如Presenter调用`view.showLoading()`方法来显示加载效果，但Presenter不应该控制View的具体实现，例如动画，所以Presenter不应该调用`view.startAnimation()`这样的方法。
 
-![](http://7xsct4.com1.z0.glb.clouddn.com/16-5-4/67007311.jpg)
+![xiaojishitu](http://7xsct4.com1.z0.glb.clouddn.com/16-5-4/67007311.jpg)
 
 ### Mosby简介
 
@@ -571,8 +571,8 @@ public LceViewState<List<Country>, CountriesView> createViewState() {
 *   什么是library？什么是framework？它们的区别是什么？
 
 > 提示：library和framework的关键区别是“控制反转”(Inversion of Control)。当你调用library中的方法时，你掌握控制权。但使用framework时，控制是倒转的：由framework来调用你的代码。
-> 
-> ![](http://7xsct4.com1.z0.glb.clouddn.com/16-5-10/52280993.jpg)
+>
+> ![52280993](http://7xsct4.com1.z0.glb.clouddn.com/16-5-10/52280993.jpg)
 
 *   什么是空对象模式(Null Object Pattern)？
 
@@ -581,6 +581,6 @@ public LceViewState<List<Country>, CountriesView> createViewState() {
 *   两种Activity被回收和重建的场景，有什么区别？
 
 > 提示：参考下面两个方法：
-> 
+>
 > *   `Fragmemt.setRetainInstance(boolean retain)`
 > *   `Activity.onRetainNonConfigurationInstance()`
