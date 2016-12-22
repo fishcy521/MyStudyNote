@@ -63,6 +63,7 @@
    1. gradle
       1. [windown下安装文档](gradle/window_install_3.1.md)
       2. [中文手册](http://pkaq.org/gradledoc/docs/userguide/userguide.html)
+      3. [html转markdown](http://tool.lu/markdown/)
    2. AndroidStudio
       1. 快捷键
       2. [mac下android studio 常用快捷键](http://www.jianshu.com/p/55e262b272b0)
@@ -87,6 +88,10 @@
       4. [Webview详解](http://www.jianshu.com/p/3c94ae673e2a)
       5. [Android开源项目](android/opensource.md)
       6. [MVP](android/mvp.md)
+      7. [Mosby](android/mosby.md)
+      8. [okhttp](android/okhttp.md)
+      9. [Retrofit](android/Retrofit.md)
+      10. [RxJava 2](https://realm.io/)
 
    3. Web前端
 

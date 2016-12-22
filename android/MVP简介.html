@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>框架介绍</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<h2>#寻宝项目架构</h2>
+
+<ul>
+<li>索引
+<ul>
+<li><a href="#1">一. 前言</a></li>
+<li><a href="#2">二. 为什么要有架构</a></li>
+<li><a href="#3">三. 怎么实现架构</a></li>
+<li><a href="#4">四. 我们将使用的架构</a></li>
+</ul></li>
+</ul>
+
+<h2 id="1">一. 前言</h2>
+
+<p>在设计中，会存在一些险恶的问题，就是那种只有通过解决或部分解决才能被明确的问题（也就是做了，出现了问题，才发现的问题）；</p>
+
+<p>最引人注目的例子就是塔科马海峡吊桥（Tacoma Narrows Bridge）的设计问题。</p>
+
+<p>设计这座桥梁时考虑的主要问题是它是否足够结实，而一场狂风最终使得大桥最终坍塌；</p>
+
+<p><img src="http://7xsct4.com1.z0.glb.clouddn.com/16-4-15/1295659.jpg" alt="" /></p>
+
+<p>这就是一个险恶问题的例子，因为直到这座桥的坍塌，才使得工程师们知道还应该充分考虑空气动力学的问题；</p>
+
+<p>在软件设计过程中，你会有很多错误的步骤，你会犯很多的错误，但是犯错也是设计的关键所在；</p>
+
+<h2 id="2">二. 为什么要有架构</h2>
+
+<p>我们举一个例子来说，如下图中，把一个系统划分成六个子系统。</p>
+
+<p><img src="http://7xsct4.com1.z0.glb.clouddn.com/16-4-15/14890479.jpg" alt="" /></p>
+
+<p>在没有定义任何规则时，没有对子系统间的通信加入任何限制，那第它们之间的通信就会肆意地发生；</p>
+
+<p>导致的结果，如下图：</p>
+
+<p><img src="http://7xsct4.com1.z0.glb.clouddn.com/16-4-15/53825081.jpg" alt="" /></p>
+
+<p>在加入若干通信规则后，子系统之间的交互得以显著地简化，结构也明显更清晰</p>
+
+<p><img src="http://7xsct4.com1.z0.glb.clouddn.com/16-4-15/75321341.jpg" alt="" /></p>
+
+<p>为了让整个系统的各子系统，及之间连接更简单易懂且易于扩展维护，就要尽量简化、统一子系统之间的交互关系。当然这也就是软件开发中我们要去做的架构设计。</p>
+
+<h2 id="3">三. 怎么实现架构</h2>
+
+<h3>1. 架构的总体质量</h3>
+
+<ul>
+<li>架构是否解决了全部需求？</li>
+<li>有没有哪个部分是过度架构或欠架构</li>
+<li>顶层设计是否独立于所用的平台？</li>
+<li>作为一个用该系统的程序员，使用这个架构感觉是否良好？</li>
+</ul>
+
+<h3>2. 时间安排</h3>
+
+<p>花费在问题定义、需求分析、软件架构上的时间，依据项目的需要而变化。一般来说，这些前期计划方面投入10%~20%的工作量和20%~30%的时间。当然，这些数字不包括详细设计的时间（那是构建活动的一部分）。</p>
+
+<blockquote>
+  <p>题外话：</p>
+  
+  <p>中小型公司很有可能需要你自己解决需求对接方面的问题，你应该要预留足够的时间，将需求定义足够清晰，让需求的不稳定性对构建活动（详细设计实现）的负面影响降至最低。</p>
+  
+  <p>一定避免出现类似这种问题：</p>
+  
+  <p>老板或客户要你给做一个门。</p>
+  
+  <p>你按一般门的规格要求，报价，做好了你的产品。</p>
+  
+  <p>老板或客户验收说：“为什么不要黄花梨材质的？为什么不带感应系统，自开自关？</p>
+  
+  <p>你："我去！"</p>
+  
+  <p>如果有人请你建一栋房子。客户问你：“完成这项工作要花多少钱？” 你会合理地询问：“你想要我做什么？” 客户说：“我不能告诉你，不过我想知道要花多少钱？” 你该明智地感谢他学浪费了你的时间，然后转身回家。</p>
+</blockquote>
+
+<h3>3. 架构构建实现</h3>
+
+<p>好的设计具有很多常见的特征，如下：</p>
+
+<h4>易于维护</h4>
+
+<p>设计时为维护工作着想，时刻想着运维人员可能会就你的软件而提出的问题。</p>
+
+<h4>松散耦合</h4>
+
+<p>设计时让程序的各个组成部分之间关联最小。通过合理抽象、封装等原则设计出相互关联尽可能最少的类。减少关联也就减少了集成、测试和维护时的工作量</p>
+
+<h4>可扩展性</h4>
+
+<p>设计时要考虑到当要增强系统功能时，无须破坏其底层结构。你可以改到系统的某一部分而不会影响到其他部分。越是可能发生的改动，越不会给系统造成破坏。</p>
+
+<h4>可重用性</h4>
+
+<p>所设计的系统的组成部分能在其他系统中重复使用</p>
+
+<h4>可移植性</h4>
+
+<p>所设计的系统能很方便的移植到其他的环境中</p>
+
+<h4>标准技术</h4>
+
+<p>尽量用标准化的、常用的方法 ，让整个系统给人一种熟悉的感觉。一个系统依赖的外来的、古怪的东西越多，别人在第一次想要理解使用它时就越头疼。</p>
+
+<h4>层次性</h4>
+
+<p>尽量保持系统各个分解层的层次性，全你能在任意的层面上观察系统，并得到一致性的看法。设计出来的系统应该能在任意层次上观察而不需要进入其他层次</p>
+
+<p>需要在一个软件系统中的若干不同细节层次上进行设计，可参考以下方案：</p>
+
+<p><img src="http://7xsct4.com1.z0.glb.clouddn.com/16-4-15/54246749.jpg" alt="" /></p>
+
+<h2 id="4">四. 我们将使用的架构</h2>
+
+<h3>1. 为什么我们要架构？</h3>
+
+<blockquote>
+  <p>题外话：（摘自“代码大全）</p>
+  
+  <p>避免创建无所不知，无所不能的上帝类、神类。</p>
+  
+  <p>如果一个类需要花费时间从其他类中通过Get()和Set()检索数据（也就是说，需要深入业务并且告诉它们如何去做），所以是否应该把这些功能函数更好的组织到其它类而不是上帝类中。</p>
+</blockquote>
+
+<p>上帝类的维护成本很高，你很难理解正在进行的操作，并且难以测试和扩展，这就是为什么要避免创建上帝类的黄金法则。</p>
+
+<p>然而！ 大家想想在Android开发中，如果你不考虑架构的话，你的Activity类！！！。</p>
+
+<p>在Android中，允许View和其它线程共存于Activity内，还有更大的问题莫过于在Activity中同时存在业务逻辑和UI逻辑。这将会增加测试和维护的成本。</p>
+
+<p>Activity是上帝类（没有架构时）！这是为什么我们需要一个清晰架构的重要原因！MVP架构模式将是一个很好的选择！</p>
+
+<blockquote>
+  <p>题外话：</p>
+  
+  <p>MVC，MVP 哪一个才是最好的呢？哪一个比其他的更优秀呢？只能选择一个？</p>
+  
+  <p>不是！没有万能药！</p>
+  
+  <p>架构模式有很多，MVP也只是架构模式之一，它们也可以协同使用，同样，也可以有选择的用于不同项目。</p>
+  
+  <p>这些架构模式只是方法、手段而不是目的、目标。</p>
+  
+  <p>MVC，MVP架构模式的动机都是一样的：如何使得层次结构清晰全理，避免复杂混乱的代码，让执行单元测试变得容易，创造高质量应用程序。</p>
+</blockquote>
+
+<h3>2. 我们将使用的架构 - MVP</h3>
+
+<p>MVP架构模式是一种进化版本的MVC，MVP代表Model，View和Presenter。</p>
+
+<p><img src="http://7xsct4.com1.z0.glb.clouddn.com/16-4-26/97198422.jpg" alt="" /></p>
+
+<p>MVP架构模式中,View接收事件,根据需要调用Presenter做业务逻辑, Presenter再负责更新视图及数据模型。</p>
+
+<ul>
+<li>View层负责处理用户事件和视图展示 （Activity或者Fragment）</li>
+<li>Presenter层负责做业务逻辑和上下层(V和M)的协作、适配，主要起到了解耦作用</li>
+<li>Model层是数据的接口负责数据模型</li>
+</ul>
+
+<p><img src="http://7xsct4.com1.z0.glb.clouddn.com/16-4-27/3193338.jpg" alt="" /></p>
+
+<p><img src="http://7xsct4.com1.z0.glb.clouddn.com/16-5-15/23544518.jpg" alt="" /></p>
+
+<blockquote>
+  <p>题外话：</p>
+  
+  <p>使用MVP架构简单，但要自己做一个真正的MVP架构还是有一定难度的；关键是，高层接口不知道底层接口的细节，或者更准确地说，高层接口不能，不应该，并且必须不了解底层接口的细节，是（面向）抽象的，并且是细节隐藏的。</p>
+  
+  <p>而我们的目标是：理解架构，掌握MVP架构的使用，了解MVP架构的实现原理</p>
+</blockquote>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

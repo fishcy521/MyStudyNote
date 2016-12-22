@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>下拉刷新开源库的选择</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<h1>下拉刷新开源库的选择</h1>
+
+<p>下拉刷新(Pull-To-Refresh)是App交互中非常常见的一种交互方式，最早是由Facebook在他们的应用中使用。</p>
+
+<p>在Android中，要实现下拉刷新功能，不太可能自己去写，多数情况下要使用开源库。本文将简单介绍三种最常用的下拉刷新类库。</p>
+
+<p>在实际项目中，根据项目需求、规模的不同，对开源库的选择往往也不同，各位可以自己尝试三种实现方式，这样在工作中，就能根据实际情况作出合理的选择，而不是永远只有一种解决方案。</p>
+
+<p>对开源库的选择，可以从以下几个方面来考虑：</p>
+
+<ul>
+<li>稳定性：Bug少，对原生控件代码的侵入尽量少。</li>
+<li>可扩展性：例如，要从ListView切换到新控件RecyclerView，此开源库是否支持？</li>
+<li>可定制性：下拉刷新的时长、动画、文字、距离等都可自定义，可配置项越多，实现UI需求就越容易；如果为了实现UI效果，需要修改类库的源码，往往会增加很多工作量。</li>
+<li>性能影响：有的下拉刷新库效果很炫，但对列表的滑动性能有影响，这在对性能要求高的应用中就不适用。</li>
+</ul>
+
+<h2>下拉刷新的常用开源库</h2>
+
+<p>目前最流行的下拉刷新实现方式有三种：</p>
+
+<h3>开源库<a href="https://github.com/chrisbanes/Android-PullToRefresh">Android-PullToRefresh</a></h3>
+
+<p>这是一个比较古老的库，写得很好，以前非常流行，核心代码如下：</p>
+
+<p>资源文件：</p>
+
+<pre><code>&lt;com.handmark.pulltorefresh.library.PullToRefreshListView
+    android:id="@+id/pull_to_refresh_listview"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent" /&gt;
+</code></pre>
+
+<p>在Activity或Fragment中：</p>
+
+<pre><code>PullToRefreshListView pullToRefreshView = (PullToRefreshListView) findViewById(R.id.pull_to_refresh_listview);
+pullToRefreshView.setOnRefreshListener(new OnRefreshListener&lt;ListView&gt;() {
+    @Override
+    public void onRefresh(PullToRefreshBase&lt;ListView&gt; refreshView) {
+        // 在这里开始获取新数据
+        new GetDataTask().execute();
+    }
+});
+
+private class GetDataTask extends AsyncTask&lt;Void, Void, String[]&gt; {
+    ...
+    @Override
+    protected void onPostExecute(String[] result) {
+        // 在这里停止UI的刷新效果
+        pullToRefreshView.onRefreshComplete();
+        super.onPostExecute(result);
+    }
+}
+</code></pre>
+
+<p>从上面的代码能看出，这个开源库的使用还是很简单的。但它在设计上有一个缺陷：我们需要使用<code>PullToRefreshListView</code>来替代<code>ListView</code>，而不是在<code>ListView</code>外层套一个下拉刷新的布局。同样，为了支持常见的几种视图，例如<code>GridView</code>，<code>ScrollView</code>，该项目都提供了一个下拉刷新版本的对应视图，这就造成了它缺乏定制性和扩展性。目前此项目已停止维护。</p>
+
+<p>这个设计上的缺陷是由于，在2013年之前，Android不能很好的支持带资源的类库(不能将XML或图片等资源打包到jar包中)，自定义组件的封装和实现收到了很大的限制。现在，在Android Studio中，我们可以使用aar格式，支持带资源的类库，所以必然会有设计更合理的下拉刷新解决方案。</p>
+
+<p>虽然有这样的缺陷，此开源库技术很成熟，使用广泛，同时支持下拉刷新和上拉刷新，被很多知名App
+都使用过，稳定性上不用担心。</p>
+
+<p>另一方面，这种停止维护的类库，用在新版本的Android SDK中，无法保证不出问题，在开发新App时需要慎重选择。</p>
+
+<h3>Android官方新控件SwipeRefreshLayout</h3>
+
+<p>此控件遵循Google的Material Design风格，它包含在AppCompat包中，使用也很简单，核心代码如下：</p>
+
+<p>资源文件：</p>
+
+<pre><code>&lt;android.support.v4.widget.SwipeRefreshLayout
+    android:id="@+id/contentView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"&gt;
+
+    &lt;ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" /&gt;
+
+&lt;/android.support.v4.widget.SwipeRefreshLayout&gt;
+</code></pre>
+
+<p>在Activity或Fragment中：</p>
+
+<pre><code>    swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        @Override public void onRefresh() {
+            // 获取新数据
+            ......
+        }
+    });
+
+    // 刷新结束后调用此方法关闭刷新效果
+    swipeRefreshLayout.setRefreshing(false);
+</code></pre>
+
+<p>作为官方控件，SwipeRefreshLayout使用简便，稳定性高，随着Android SDK的升级始终有新版本的发布，对SDK的适配性最好。</p>
+
+<p>注意到，此时下拉刷新是一个单独的布局，而不再是重写ListView或GridView，你在这个布局中可以放置任意视图，这样，它的可扩展性就明显增强了。</p>
+
+<p>另外，SwipeRefreshLayout遵循官方的Material Design风格，没有提供多种多样的UI刷新样式，这是优点也是缺点：一方面，由于代码精简，控件的性能较好；另一方面，如果你的UI设计师不想遵循Material Design风格，比价有自己的想法，用这个控件可能就难以实现。</p>
+
+<h3>开源库<a href="https://github.com/liaohuqiu/android-Ultra-Pull-To-Refresh">android-Ultra-Pull-To-Refresh</a></h3>
+
+<p>这是国内程序员写的一个很优秀的开源库，附有中文文档和介绍，大家可以自行阅读：</p>
+
+<blockquote>
+  <p><a href="https://github.com/liaohuqiu/android-Ultra-Pull-To-Refresh/blob/master/README-cn.md">中文文档</a></p>
+  
+  <p><a href="http://android-ultra-ptr.liaohuqiu.net/cn/">介绍：我眼中的下拉刷新</a></p>
+  
+  <p>依赖：compile 'in.srain.cube:ultra-ptr:1.0.11'</p>
+</blockquote>
+
+<p>核心代码：</p>
+
+<p>资源文件：</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;in.srain.cube.views.ptr.PtrClassicFrameLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ptrClassicFrameLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="HardcodedText"&gt;
+
+    &lt;ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/&gt;
+
+&lt;/in.srain.cube.views.ptr.PtrClassicFrameLayout&gt;
+</code></pre>
+
+<p>在Activity或Fragment中：</p>
+
+<pre><code>    ptrFrameLayout.setPtrHandler(new PtrDefaultHandler() {
+        @Override public void onRefreshBegin(PtrFrameLayout frame) {
+            // 开始更新数据
+            updateData();
+        }
+    });
+
+    // 数据更新完毕，调用下面的方法停止刷新动画
+    ptrFrameLayout.refreshComplete();
+</code></pre>
+
+<p>此类库同样是用一个布局来完成下拉刷新的工作，可扩展性好，能对任何视图做下拉刷新。</p>
+
+<p>同时，它的可定制性也非常强，可以实现各种各样的下拉刷新效果。</p>
+
+<p>当然，由于是个人的开源项目，在稳定性上可能不如官方控件有保证，这就需要使用者自行判断了。</p>
+
+<h2>总结</h2>
+
+<ul>
+<li><p>在我们的项目中，推荐大家使用<strong>SwipeRefreshLayout</strong>或者<strong>android-Ultra-Pull-To-Refresh</strong>。</p></li>
+<li><p>上面三个库的设计和编码都非常不错，是自定义控件方面的经典学习材料。</p></li>
+<li><p>三个库的基本使用方法其实是一样的，都有一个<strong>下拉刷新的监听器</strong>，和一个<strong>停止刷新的方法</strong>。这种一致性，一方面是由于它本身就是好的设计；另一方面，类库的设计者也常常会主动将接口设计得同旧类库相似，减小开发者的迁移成本，吸引更多开发者使用。</p></li>
+</ul>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

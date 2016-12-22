@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Universal_image_loader使用说明_袁崇杰</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<h1><code>Universal_image_loader</code>使用说明</h1>
+<p><a href="https://github.com/nostra13/Android-Universal-Image-Loader">GitHub库</a></p>
+<p>此开源库是一个非常流行的图片加载框架，从GitHub上的数据就能看出其流行程度：</p>
+<p><img src="http://7xsct4.com1.z0.glb.clouddn.com/16-4-7/52508469.jpg" /></p>
+<p>虽然此库作者已不再更新，但很多公司依然在使用。相比提供类似功能的库例如Fresco、Glide等，<code>Universal_image_loader</code>的功能更单一，而在开源库的选择上，功能单一很多时候都是优势。</p>
+<ul>
+<li>
+索引
+<ul>
+<li><a href="#1">简介</a></li>
+<li><a href="#2">快速上手</a></li>
+<li><a href="#3">详细介绍</a></li>
+<li><a href="#4">注意事项</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="1">简介</h2>
+<p><code>Universal_image_loader</code>为图片的加载、缓存和显示提供了强力的、高度可定制化的工具。它提供了一系列的配置项，并且让你能很好的控制图片加载、缓存和显示的过程。它的主要特性如下：</p>
+<ul>
+<li>多线程图片加载</li>
+<li>自定义ImageLoader的各项配置(包括线程、解析器、缓存、显示选项等)</li>
+<li>单个图片显示选项的自定义(包括桩图片、缓存切换、解码选项等)</li>
+<li>图片的内存缓存和硬盘缓存</li>
+<li>监听加载过程</li>
+</ul>
+<h2 id="2">快速上手</h2>
+<h3>配置</h3>
+<p>在Android Studio项目中添加Gradle依赖：</p>
+<pre><code>compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+</code></pre>
+
+<p>此库用到了网络连接和硬盘缓存，所以需要在清单文件中添加权限：</p>
+<pre><code>&lt;manifest&gt;
+    &lt;!-- Include following permission if you load images from Internet --&gt;
+    &lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;
+    &lt;!-- Include following permission if you want to cache images on SD card --&gt;
+    &lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot; /&gt;
+    ...
+&lt;/manifest&gt;
+</code></pre>
+
+<p>使用前初始化：</p>
+<p>此库的核心类是ImageLoader，在使用该类之前需要先对其初始化，即上面所说的“自定义ImageLoader的各项配置”。此工作可以在Application类的onCreate中做：</p>
+<pre><code>public void onCreate() {
+    super.onCreate();
+
+    // 创建全局配置，使用此配置初始化ImageLoader。
+    ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
+        ...
+        .build();
+    ImageLoader.getInstance().init(config);
+    ...
+}
+</code></pre>
+
+<h3>简单使用</h3>
+<p>ImageLoader类用来将图片加载到ImageView上，如下：</p>
+<pre><code>ImageLoader imageLoader = ImageLoader.getInstance(); // 获取单例
+
+// 获取图片，解码成Bitmap，并将Bitmap显示在ImageView上 (或其它任何实现了ImageAware接口的视图)
+imageLoader.displayImage(imageUri, imageView);
+
+// 获取图片，解码成Bitmap，并将Bitmap传给回调
+imageLoader.loadImage(imageUri, new SimpleImageLoadingListener() {
+    @Override
+    public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+        // 处理Bitmap
+    }
+});
+
+// 加载图片，同步返回Bitmap
+Bitmap bmp = imageLoader.loadImageSync(imageUri);
+</code></pre>
+
+<p>上面的例子显示了ImageLoader最简单的三种用法，前两种是异步的，不会阻塞主线程，最后一种是同步的，不能在主线程中调用。事实上，仅仅上面这三种很简单的用法，就能解决我们大量应用场景中的重复性工作了。</p>
+<p>上面例子中的<code>imageUri</code>是对图片资源位置描述的字符串，这里既支持网络图片，本地图片，也支持Content Provider等。能处理的URI例子如下：</p>
+<pre><code>&quot;http://site.com/image.png&quot; // from Web
+&quot;file:///mnt/sdcard/image.png&quot; // from SD card
+&quot;file:///mnt/sdcard/video.mp4&quot; // from SD card (video thumbnail)
+&quot;content://media/external/images/media/13&quot; // from content provider
+&quot;content://media/external/video/media/13&quot; // from content provider (video thumbnail)
+&quot;assets://image.png&quot; // from assets
+&quot;drawable://&quot; + R.drawable.img // from drawables (non-9patch images)
+</code></pre>
+
+<p>注意，对于 drawable:// 类型的URI，它不能处理点9图，而且一般情况下不需要使用，直接用<code>ImageView.setImageResource(...)</code>就行。</p>
+<h2 id="3">详细介绍</h2>
+<h3>图片加载和显示任务流</h3>
+<p><img src="http://7xsct4.com1.z0.glb.clouddn.com/16-4-7/82616294.jpg" /></p>
+<h3>完整接口</h3>
+<p>上面简单使用中的例子，只有一个回调方法，接受解码和处理后的Bitmap对象，无法对图片处理过程做出控制，也无法设置图片显示选项，完整的接口如下：</p>
+<pre><code>imageLoader.displayImage(imageUri, imageView, options, new ImageLoadingListener() {
+    @Override
+    public void onLoadingStarted(String imageUri, View view) {
+        ...
+    }
+    @Override
+    public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+        ...
+    }
+    @Override
+    public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+        ...
+    }
+    @Override
+    public void onLoadingCancelled(String imageUri, View view) {
+        ...
+    }
+}, new ImageLoadingProgressListener() {
+    @Override
+    public void onProgressUpdate(String imageUri, View view, int current, int total) {
+        ...
+    }
+});
+</code></pre>
+
+<p>使用上面的方法，可以灵活控制图片加载过程，例如在加载过程中显示动画，加载前显示默认图片，加载失败显示统一的错误图片等。</p>
+<p>另外，我们知道，在加载Bitmap对象时，常常需要防止图片过大造成的内存溢出。以前我们是使用BitmapFactory.Options类，设置inSampleSize属性的方式来实现此需求。ImageLoader中提供了更简单的方式：</p>
+<pre><code>ImageSize targetSize = new ImageSize(80, 50); // 返回的Bitmap将符合此尺寸
+imageLoader.loadImage(imageUri, targetSize, options, new SimpleImageLoadingListener() {
+    @Override
+    public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+        // Do whatever you want with Bitmap
+    }
+});
+
+ImageSize targetSize = new ImageSize(80, 50); // 返回的Bitmap将符合此尺寸
+Bitmap bmp = imageLoader.loadImageSync(imageUri, targetSize, options);
+</code></pre>
+
+<h3>ImageLoader配置</h3>
+<p>配置ImageLoader的类是ImageLoaderConfiguration，此配置是全局的，在应用中只应设置一次。</p>
+<p>此配置使用Builder模式来构建，Builder中所有的值都是可选的，都有适用于常规应用场景的默认值，所以对于配置项，除非你真的有自定义的需求，一般不需要改变。下面是各个配置项的例子：</p>
+<pre><code>File cacheDir = StorageUtils.getCacheDirectory(context);
+ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)
+        .memoryCacheExtraOptions(480, 800) // default = device screen dimensions
+        .diskCacheExtraOptions(480, 800, null)
+        .taskExecutor(...)
+        .taskExecutorForCachedImages(...)
+        .threadPoolSize(3) // default
+        .threadPriority(Thread.NORM_PRIORITY - 2) // default
+        .tasksProcessingOrder(QueueProcessingType.FIFO) // default
+        .denyCacheImageMultipleSizesInMemory()
+        .memoryCache(new LruMemoryCache(2 * 1024 * 1024))
+        .memoryCacheSize(2 * 1024 * 1024)
+        .memoryCacheSizePercentage(13) // default
+        .diskCache(new UnlimitedDiskCache(cacheDir)) // default
+        .diskCacheSize(50 * 1024 * 1024)
+        .diskCacheFileCount(100)
+        .diskCacheFileNameGenerator(new HashCodeFileNameGenerator()) // default
+        .imageDownloader(new BaseImageDownloader(context)) // default
+        .imageDecoder(new BaseImageDecoder()) // default
+        .defaultDisplayImageOptions(DisplayImageOptions.createSimple()) // default
+        .writeDebugLogs()
+        .build();
+</code></pre>
+
+<h3>显示选项</h3>
+<p>控制显示选项的类是DisPlayImageOptions，它是局部的，只作用于单一的显示任务。</p>
+<p>可以通过ImageLoaderConfiguration.defaultDisplayImageOptions(...)设置默认的显示选项，如果在调用ImageLoader.displayImage(...)不传递Options参数，则会使用默认的显示选项。</p>
+<p>显示选项的使用例子如下：</p>
+<pre><code>DisplayImageOptions options = new DisplayImageOptions.Builder()
+        .showImageOnLoading(R.drawable.ic_stub) // resource or drawable
+        .showImageForEmptyUri(R.drawable.ic_empty) // resource or drawable
+        .showImageOnFail(R.drawable.ic_error) // resource or drawable
+        .resetViewBeforeLoading(false)  // default
+        .delayBeforeLoading(1000)
+        .cacheInMemory(false) // default
+        .cacheOnDisk(false) // default
+        .preProcessor(...)
+        .postProcessor(...)
+        .extraForDownloader(...)
+        .considerExifParams(false) // default
+        .imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2) // default
+        .bitmapConfig(Bitmap.Config.ARGB_8888) // default
+        .decodingOptions(...)
+        .displayer(new SimpleBitmapDisplayer()) // default
+        .handler(new Handler()) // default
+        .build();
+</code></pre>
+
+<h2 id="4">注意事项</h2>
+<h3>1. 缓存默认设置是不使用任何缓存。</h3>
+<p>如果你需要将加载的图片缓存在内存或硬盘中，你需要在DisplayImageOptions中做设置：</p>
+<p>全局设置：</p>
+<pre><code>// Create default options which will be used for every 
+// displayImage(...) call if no options will be passed to this method
+DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
+        ...
+        .cacheInMemory(true)
+        .cacheOnDisk(true)
+        ...
+        .build();
+ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
+        ...
+        .defaultDisplayImageOptions(defaultOptions)
+        ...
+        .build();
+ImageLoader.getInstance().init(config); // Do it on Application start
+</code></pre>
+
+<p>或者单次设置：</p>
+<pre><code>DisplayImageOptions options = new DisplayImageOptions.Builder()
+        ...
+        .cacheInMemory(true)
+        .cacheOnDisk(true)
+        ...
+        .build();
+ImageLoader.getInstance().displayImage(imageUrl, imageView, options); // Incoming options will be used
+</code></pre>
+
+<h3>2. 硬盘缓存的权限</h3>
+<p>如果你使能了硬盘缓存，ImageLoader会尝试将图片存储在外部存储器上(/sdcard/Android/data/[package_name]/cache)。如果外部存储器不可用，则会缓存在设备文件系统中。要缓存在外部存储器上，需要以下权限：</p>
+<pre><code>&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot; android:maxSdkVersion=&quot;18&quot; /&gt;
+</code></pre>
+
+<h3>3. ImageLoader设置Bitmap尺寸的过程</h3>
+<p>在使用<code>ImageLoader.getInstance().displayImage(imageUrl, imageView)</code>来加载图片时， ImageLoader会自动根据ImageView的宽高来调整目标Bitmap的尺寸，它会查找以下参数：</p>
+<ul>
+<li>ImageView的MeasuredWidth和MeasuredHeight</li>
+<li><code>android:layout_witdh</code>和<code>android:layout_height</code>参数</li>
+<li><code>android:maxWidth</code>和<code>android:maxHeight</code>参数</li>
+<li>从配置中获取最大宽高(memoryCacheExtraOptions(int, int) option)</li>
+<li>设备屏幕的宽和高</li>
+</ul>
+<p>所以，如果你知道图片大概的尺寸，尽量设置<code>android:layout_width|android:layout_height</code> 或者 <code>android:maxWidth|android:maxHeight</code>为固定值，这会帮助ImageLoader正确计算Bitmap所需的尺寸，<strong>节省内存</strong>。</p>
+<h3>4. 使用ImageLoader遇到OOM(OutOfMemoryError)的处理方法</h3>
+<ul>
+<li>禁用内存缓存。如果OOM依然发生，那很有可能你的app发生了内存泄漏。使用MemoryAnalyzer来检测，或者使用如下步骤：</li>
+<li>在配置中减少内存池容量(.threadPoolSize(...))，推荐设置是1~5。</li>
+<li>在显示选项中使用<code>.bitmapConfig(Bitmap.Config.RGB_565)</code>。<code>RGB_565</code>格式的Bitmap消耗的内存只有<code>ARGB_8888</code>的1/2。</li>
+<li>使用<code>.imageScaleType(ImageScaleType.EXACTLY)</code>。</li>
+<li>在配置中使用<code>.diskCacheExtraOptions(480, 320, null)</code>。</li>
+</ul>
+<h3>5. 对于内存缓存的配置(ImageLoaderConfiguration.memoryCache(...))，你可以使用下面的实现：</h3>
+<ul>
+<li>
+只使用强应用做缓存
+<ul>
+<li>LruMemoryCache (近期最少使用的Bitmap先被删除) - 默认使用</li>
+</ul>
+</li>
+<li>
+使用弱引用和强应用做缓存
+<ul>
+<li>UsingFreqLimitedMemoryCache (使用频率最少的Bitmap先被删除)</li>
+<li>LRULimitedMemoryCache (近期最少使用的Bitmap先被删除)</li>
+<li>FIFOLimitedMemoryCache (按先进先出规则删除Bitmap)</li>
+<li>LargestLimitedMemoryCache (最大的Bitmap先被删除)</li>
+<li>LimitedAgeMemoryCache (装饰器，当缓存对象存在时间超过阈值则被删除)</li>
+</ul>
+</li>
+<li>
+只使用弱引用做缓存
+<ul>
+<li>WeakMemoryCache (无限制缓存)</li>
+</ul>
+</li>
+</ul>
+<h3>6. 对于硬盘缓存(ImageLoaderConfiguration.diskCache(...))，你可以使用下面的实现：</h3>
+<ul>
+<li>UnlimitedDiscCache (最快的缓存，不限制大小) - 默认使用</li>
+<li>LruDiskCache (限制缓存大小或文件总数，近期最少使用的文件先被删除)</li>
+<li>LimitedAgeDiscache (缓存大小不限，限制文件存在时间)</li>
+</ul>
+<p>注意：UnlimitedDiscCache比其它有限制的硬盘缓存要快得多。</p>
+<h3>7. 要控制Bitmap显示形式 (DisplayImageOptions.displayer(...))，你可以使用下面的实现：</h3>
+<ul>
+<li>RoundedBitmapDisplayer (显示圆角图片)</li>
+<li>FadeInBitmapDisplayer (用渐入动画显示图片)</li>
+</ul>
+<h3>8. 要避免列表滑动造成的延迟(滑动过程中暂停加载)，可以使用<code>PauseOnScrollListener</code>：</h3>
+<pre><code>boolean pauseOnScroll = false; // or true
+boolean pauseOnFling = true; // or false
+PauseOnScrollListener listener = new PauseOnScrollListener(imageLoader, pauseOnScroll, pauseOnFling);
+listView.setOnScrollListener(listener);
+</code></pre>
+
+<h3>9. 日志打印</h3>
+<p>日志中会输出如下形式的URL：<code>http://anysite.com/images/image.png_230x460</code>，此信息是“URL + target size”，作为Bitmap内存缓存的key，不会真正应用于HTTP请求中。</p>
+<h3>10. ImageLoader总是保持图片的长宽比</h3>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
