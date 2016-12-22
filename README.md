@@ -56,6 +56,8 @@
       18. [Android开发者-中国站](https://developer.android.google.cn/index.html)
       19. [Grunt](http://www.gruntjs.net/)
       20. [Bmob移动云服务](http://www.bmob.cn/)
+      21. [菜鸟教程](http://www.runoob.com/)
+      22. [swagger官网](http://swagger.io/)
 
 3. 开发工具
    1. gradle
@@ -83,6 +85,8 @@
       2. 控件
       3. [自定义HorizontalScrollView](http://blog.csdn.net/lmj623565791/article/details/38140505)
       4. [Webview详解](http://www.jianshu.com/p/3c94ae673e2a)
+      5. [Android开源项目](android/opensource.md)
+      6. [MVP](android/mvp.md?_blank)
 
    3. Web前端
 
@@ -91,6 +95,7 @@
       3. CSS3
       4. Javacripte
       5. JQuery
+      6. [bootstrap](http://getbootstrap.com/)
 
    4. R语言
 
@@ -99,11 +104,20 @@
       3. [官方网站上的一些手册和文档](cran.r-project.org—manuals.html)
       4. [华盛顿大学的一个R教程](staff.washington.edu—Rcourse)
 
-   5. git相关
+   5. git
 
       1. [git团队开发](http://www.cnblogs.com/schaepher/p/4933873.html)
 
-   6. 常见问题总结
+   6. github
+
+      1. [alibaba](https://github.com/alibaba)
+      2. [bootstrap](https://github.com/twbs/bootstrap)
+      3. [melofred](https://github.com/melofred)
+      4. [Android面试复习](https://github.com/envyfan/AndroidReview.git)
+      5. [Android-InterView](https://github.com/paceboy/Android-InterView.git)
+      6. [Android面试试题](https://github.com/solaris0403/Android-Interview.git)
+
+   7. 常见问题总结
 
       1. [[ScrollView嵌套ListView的滑动冲突问题](http://www.cnblogs.com/wangying222/p/5832443.html)
       2. [软件发布版本代号](常识知识/版本代号.md)
@@ -111,7 +125,7 @@
       4. [HTTP知识](http://www.jianshu.com/p/a6d086a3997d)
       5. [安卓系统](http://www.52pojie.cn/thread-247937-1-1.html)
 
-   7. 博客
+   8. 博客
       1. [ANDROID干货](http://www.cnblogs.com/tianmanyi/p/5509404.html)
       2. [android开发各种相关干货](http://blog.csdn.net/aishang5wpj/article/details/50130573)
       3. [干货集中营共享android端知识点综合整理](http://blog.csdn.net/lupengfei1009/article/details/50826442)

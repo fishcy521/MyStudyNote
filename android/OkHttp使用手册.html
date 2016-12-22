@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>OkHttp使用手册_袁崇杰</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<h1>OkHttp使用手册</h1>
+
+<blockquote>
+  <p><a href="http://square.github.io/okhttp/">官方网站</a> | <a href="https://github.com/square/okhttp">GitHub</a> | <a href="https://github.com/square/okhttp/wiki">Wiki</a> | <a href="http://square.github.io/okhttp/3.x/okhttp/">Javadoc</a></p>
+</blockquote>
+
+<ul>
+<li>索引
+<ul>
+<li><a href="#1">简介及快速上手</a></li>
+<li><a href="#2">Call模型</a></li>
+<li><a href="#3">基本使用方法</a></li>
+<li><a href="#4">更多内容</a></li>
+<li><a href="#10">FAQ</a></li>
+</ul></li>
+</ul>
+
+<p><h2 id="1">简介及快速上手</p>
+
+<h3>简介</h3>
+
+<p>OkHttp是<a href="https://github.com/square">Square</a>出的Http通讯库，支持HTTP和HTTP/2，用于Android应用和Java应用。</p>
+
+<p>OkHttp是非常优秀的Http通讯库，将Http连接中各种繁杂的问题，对并发的支持，对常见异常的处理等封装在底层，提供简单易用的API供应用中调用。与之相比，<code>HttpUrlConnection</code>的使用过于复杂，Appache的<code>HttpClient</code>在Android平台上的运行又有各种问题，在Android 6.0之后，已经将<code>HttpClient</code>库从SDK中删除，全面转向使用OkHttp。</p>
+
+<p>目前有很多知名的Android三方框架都使用<code>OkHttp</code>作为网络连接的默认基栈，例如Volley，Glide，Retrofit等，从中也能看出学习OkHttp的必要性。</p>
+
+<h3>快速上手</h3>
+
+<h5>在项目中添加对OkHttp的依赖</h5>
+
+<p>在需要使用OkHttp的模块的build.gradle文件中，添加如下依赖：(版本号可能变更)</p>
+
+<pre><code>compile 'com.squareup.okhttp3:okhttp:3.2.0'
+</code></pre>
+
+<h5>初始化</h5>
+
+<p>OkHttp框架的核心类是OkHttpClient，此类可直接实例化。由于OkHttpClient内部处理了并发，多线程和Socket重用等问题，为了节省资源，整个应用中使用一个OkHttpClient对象即可，可以对它做Singleton封装。</p>
+
+<pre><code>OkHttpClient okHttpClient = new OkHttpClient();
+</code></pre>
+
+<h5>Http请求的构建</h5>
+
+<p>代表Http请求的类是Request，该类使用构造器模式，最简单的构造GET请求如下：</p>
+
+<pre><code>Request request = new Request.Builder()
+      .url(url)
+      .build();
+</code></pre>
+
+<p>要构造Post请求，在构建Request时增加请求体即可：</p>
+
+<pre><code>RequestBody formBody = new FormEncodingBuilder()
+    .add("name", "Cuber")
+    .add("age", "26")
+    .build();
+
+Request request = new Request.Builder()
+      .url(url)
+      .post(RequestBody)
+      .build();
+</code></pre>
+
+<h5>Http请求的发送</h5>
+
+<p>请求的发送有两种形式，一种是直接同步执行，阻塞调用线程，直接返回结果；另一种是通过队列异步执行，不阻塞调用线程，通过回调方法返回结果。如下所示：</p>
+
+<p>同步执行：</p>
+
+<pre><code>// 如果返回null，代表超时或没有网络连接
+Response response = client.newCall(request).execute();
+</code></pre>
+
+<p>异步回调：</p>
+
+<pre><code>Response response = client.newCall(request).enqueue(new Callback() {
+
+    @Override
+    public void onFailure(Request request, IOException e) {
+        //超时或没有网络连接
+        //注意：这里是后台线程！
+    }
+
+    @Override
+        public void onResponse(Response response) throws IOException {
+        //成功
+        //注意：这里是后台线程！
+    }
+});
+</code></pre>
+
+<p>以上这些就是快速上手OkHttp需要知道的全部内容，可以从中看出，它的API非常简单易用。</p>
+
+<h2 id="2">Call模型</h2>
+
+<p>Http客户端的任务是处理请求和响应，这说起来简单，但实际过程很复杂。</p>
+
+<ul>
+<li>请求：Http请求包含一个URL，请求方法(例如GET或者POST)，请求头。还可能包含请求体，可以是数据流也可以是指定的内容类别。</li>
+<li>响应：用一个响应码来回应请求(例如200代表成功，404代表页面未找到)，响应头和响应体。</li>
+</ul>
+
+<h3>请求的重写</h3>
+
+<p>为了保证正确性和传输效率，OkHttp会在发送你的请求之前重写它，例如：</p>
+
+<ul>
+<li>OkHttp可能会添加原始请求中缺失的头信息，包括<code>Content-Length</code>, <code>Transfer-Encoding</code>, <code>User-Agent</code>, <code>Host</code>, <code>Connection</code>, 和 <code>Content-Type</code>。</li>
+<li>为了实现透明的响应压缩(transparent response compression)，OkHttp会增加<code>Accept-Encoding</code>头信息。</li>
+<li>如果你收到了cookie，OkHttp会增加<code>Cookie</code>头信息。</li>
+<li>某些请求可能会对响应做缓存。如果被缓存的响应不是最新的，OkHttp能做一个有条件的GET请求来下载更新后的响应。此功能需要添加<code>If-Modified-Since</code>和<code>If-None-Match</code>等头信息。</li>
+</ul>
+
+<h3>响应的重写</h3>
+
+<p>如果使用了透明压缩，OkHttp会去掉对应响应的<code>Content-Encoding</code>和<code>Content-Length</code>头信息，因为它们不能应用于解压后的响应体。</p>
+
+<p>如果有条件的GET成功了，网络侧的响应和缓存的响应会被自动合并。</p>
+
+<h3>重定向</h3>
+
+<p>如果你请求的URL被移动了，服务器会返回类似于302这样的响应码，来指明新的URL。OkHttp能跟随新的URL，获取到最终的响应。</p>
+
+<h3>请求的重试</h3>
+
+<p>有时会发生连接失败：可能网络连接状况不好，或者服务器不可达。OkHttp会自动使用不同的路由来重试请求。</p>
+
+<h3>Call模型</h3>
+
+<p>由于以上的重写，重定向和重试等操作，你的一个简单请求可能会产生多个请求和响应。OkHttp使用<strong>Call</strong>这一概念对此来建模：不论为了满足你的请求任务，中间做了多少次请求和响应，都算作一个<strong>Call</strong>。</p>
+
+<p><strong>Call</strong>有两种方式来执行：</p>
+
+<ul>
+<li>同步方式：你的线程会被阻塞，知道响应可读。</li>
+<li>异步方式：你在任意线程将请求排队，当响应可读时，会在另一个线程拿到回调。</li>
+</ul>
+
+<p>Call可以在任意线程取消，如果请求没有完成，调用取消方法会导致请求失败，读写请求体和响应体的代码会产生IOException。</p>
+
+<h3>Call的分派</h3>
+
+<p>对于同步调用，你自己需要负责对线程和并发请求的管理。太多的同时存在的连接会浪费资源，太少则会影响延迟性能。</p>
+
+<p>对于异步调用，<code>Dispatcher</code>实现了对最大并发请求数的管理。你可以设置最大的单服务器并发数(默认是5)，和最大的总并发数(默认是64)。</p>
+
+<h2 id="3">基本使用方法</h2>
+
+<p>以下是一些简单的代码样例，用来阐明如何用OkHttp解决常见问题。</p>
+
+<h3>同步Get请求</h3>
+
+<pre><code>private final OkHttpClient client = new OkHttpClient();
+
+public void run() throws Exception {
+    Request request = new Request.Builder()
+        .url("http://publicobject.com/helloworld.txt")
+        .build();
+
+    // 下载文件
+    Response response = client.newCall(request).execute();
+    if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+
+    // 打印响应的头信息
+    Headers responseHeaders = response.headers();
+    for (int i = 0; i &lt; responseHeaders.size(); i++) {
+      System.out.println(responseHeaders.name(i) + ": " + responseHeaders.value(i));
+    }
+
+    // 将文件内容作为字符串输出
+    System.out.println(response.body().string());
+}
+</code></pre>
+
+<p>响应体的<code>string()</code>方法对于小文件来说非常方便和高效，但如果响应体较大(例如大于1M)，要避免使用这一方法，因为它会将文件内容全部加载在内存上。在这种情况下，使用流来处理响应体。</p>
+
+<h3>异步Get请求</h3>
+
+<p>下载一个文件，当响应可读时获得回调。具体收到回调的时间是当响应头准备好时，读取响应体仍然可能会阻塞。当前OkHttp没有提供异步API来接受响应体的各部分。</p>
+
+<pre><code>private final OkHttpClient client = new OkHttpClient();
+
+public void run() throws Exception {
+    Request request = new Request.Builder()
+            .url("http://publicobject.com/helloworld.txt")
+            .build();
+
+    client.newCall(request).enqueue(new Callback() {
+        @Override
+        public void onFailure(Request request, IOException throwable) {
+            throwable.printStackTrace();
+        }
+
+        @Override
+        public void onResponse(Response response) throws IOException {
+            if (!response.isSuccessful())
+                throw new IOException("Unexpected code " + response);
+
+            Headers responseHeaders = response.headers();
+            for (int i = 0; i &lt; responseHeaders.size(); i++) {
+                System.out.println(responseHeaders.name(i) + ": " + responseHeaders.value(i));
+            }
+
+            System.out.println(response.body().string());
+        }
+    });
+}
+</code></pre>
+
+<h3>获取头信息</h3>
+
+<pre><code>private final OkHttpClient client = new OkHttpClient();
+
+public void run() throws Exception {
+    Request request = new Request.Builder()
+            .url("https://api.github.com/repos/square/okhttp/issues")
+            .header("User-Agent", "OkHttp Headers.java")
+            .addHeader("Accept", "application/json; q=0.5")
+            .addHeader("Accept", "application/vnd.github.v3+json")
+            .build();
+
+    Response response = client.newCall(request).execute();
+    if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+
+    System.out.println("Server: " + response.header("Server"));
+    System.out.println("Date: " + response.header("Date"));
+    System.out.println("Vary: " + response.headers("Vary"));
+}
+</code></pre>
+
+<h3>Post字符串</h3>
+
+<p>以下的例子显示了如何Post一个字符串给服务器，同样，不要使用此API传送大文件(> 1M)。</p>
+
+<pre><code>private final OkHttpClient client = new OkHttpClient();
+
+public void run() throws Exception {
+    String postBody = ""
+            + "Releases\n"
+            + "--------\n"
+            + "\n"
+            + " * _1.0_ May 6, 2013\n"
+            + " * _1.1_ June 15, 2013\n"
+            + " * _1.2_ August 11, 2013\n";
+
+    Request request = new Request.Builder()
+            .url("https://api.github.com/markdown/raw")
+            .post(RequestBody.create(MEDIA_TYPE_MARKDOWN, postBody))
+            .build();
+
+    Response response = client.newCall(request).execute();
+    if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+
+    System.out.println(response.body().string());
+}
+</code></pre>
+
+<h3>Post流</h3>
+
+<p>下面的例子使用了Okio的buffered sink。如果想使用OutputStream，可以通过<code>BufferedSink.outputStream()</code>方法。</p>
+
+<pre><code>public static final MediaType MEDIA_TYPE_MARKDOWN
+        = MediaType.parse("text/x-markdown; charset=utf-8");
+
+public static final MediaType MEDIA_TYPE_MARKDOWN
+        = MediaType.parse("text/x-markdown; charset=utf-8");
+
+private final OkHttpClient client = new OkHttpClient();
+
+public void run() throws Exception {
+    RequestBody requestBody = new RequestBody() {
+        @Override public MediaType contentType() {
+            return MEDIA_TYPE_MARKDOWN;
+        }
+
+        @Override public void writeTo(BufferedSink sink) throws IOException {
+            sink.writeUtf8("Numbers\n");
+            sink.writeUtf8("-------\n");
+            for (int i = 2; i &lt;= 997; i++) {
+                sink.writeUtf8(String.format(" * %s = %s\n", i, factor(i)));
+            }
+        }
+
+        private String factor(int n) {
+            for (int i = 2; i &lt; n; i++) {
+                int x = n / i;
+                if (x * i == n) return factor(x) + " × " + i;
+            }
+            return Integer.toString(n);
+        }
+    };
+
+    Request request = new Request.Builder()
+            .url("https://api.github.com/markdown/raw")
+            .post(requestBody)
+            .build();
+
+    Response response = client.newCall(request).execute();
+    if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+
+    System.out.println(response.body().string());
+}
+</code></pre>
+
+<h3>Post文件</h3>
+
+<pre><code>public static final MediaType MEDIA_TYPE_MARKDOWN
+        = MediaType.parse("text/x-markdown; charset=utf-8");
+
+private final OkHttpClient client = new OkHttpClient();
+
+public void run() throws Exception {
+    File file = new File("README.md");
+
+    Request request = new Request.Builder()
+            .url("https://api.github.com/markdown/raw")
+            .post(RequestBody.create(MEDIA_TYPE_MARKDOWN, file))
+            .build();
+
+    Response response = client.newCall(request).execute();
+    if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+
+    System.out.println(response.body().string());
+}
+</code></pre>
+
+<h3>Post form参数</h3>
+
+<pre><code>private final OkHttpClient client = new OkHttpClient();
+
+public void run() throws Exception {
+    RequestBody formBody = new FormBody.Builder()
+            .add("search", "Jurassic Park")
+            .build();
+    Request request = new Request.Builder()
+            .url("https://en.wikipedia.org/w/index.php")
+            .post(formBody)
+            .build();
+
+    Response response = client.newCall(request).execute();
+    if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+
+    System.out.println(response.body().string());
+}
+</code></pre>
+
+<h3>Post多部分请求</h3>
+
+<p><code>MultipartBody.Builder</code>可以构建复杂的请求体，多部分请求体的每一个部分都是一个单一的请求体，可以定义它自身的请求头。</p>
+
+<pre><code>private static final String IMGUR_CLIENT_ID = "...";
+private static final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
+
+private final OkHttpClient client = new OkHttpClient();
+
+public void run() throws Exception {
+    // Use the imgur image upload API as documented at https://api.imgur.com/endpoints/image
+    RequestBody requestBody = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("title", "Square Logo")
+            .addFormDataPart("image", "logo-square.png",
+                    RequestBody.create(MEDIA_TYPE_PNG, new File("website/static/logo-square.png")))
+            .build();
+
+    Request request = new Request.Builder()
+            .header("Authorization", "Client-ID " + IMGUR_CLIENT_ID)
+            .url("https://api.imgur.com/3/image")
+            .post(requestBody)
+            .build();
+
+    Response response = client.newCall(request).execute();
+    if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+
+    System.out.println(response.body().string());
+}
+</code></pre>
+
+<h3>使用Gson来解析JSON响应</h3>
+
+<p>以下代码使用Gson库来解析服务器响应的JSON信息，注意<code>ResponseBody.charStream()</code>方法使用响应头中的<code>Content-Type</code>字段来选择使用何种字符集，如果没有指明，默认将使用UTF-8。</p>
+
+<pre><code>private final OkHttpClient client = new OkHttpClient();
+private final Gson gson = new Gson();
+
+public void run() throws Exception {
+    Request request = new Request.Builder()
+            .url("https://api.github.com/gists/c2a7c39532239ff261be")
+            .build();
+    Response response = client.newCall(request).execute();
+    if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+
+    Gist gist = gson.fromJson(response.body().charStream(), Gist.class);
+    for (Map.Entry&lt;String, GistFile&gt; entry : gist.files.entrySet()) {
+        System.out.println(entry.getKey());
+        System.out.println(entry.getValue().content);
+    }
+}
+
+static class Gist {
+    Map&lt;String, GistFile&gt; files;
+}
+
+static class GistFile {
+    String content;
+}
+</code></pre>
+
+<h3>Call的取消</h3>
+
+<p>使用<code>Call.cancel()</code>来停止一个执行中的请求。如果线程正在写请求或读响应，则会收到IOException。使用此方法，在一个Call已经不需要时取消它，可以节省网络流量。</p>
+
+<h2 id="4">更多内容</h2>
+
+<p>以上是对OkHttp的基本了解，更多内容包括：</p>
+
+<ul>
+<li>处理鉴权和Cookie。</li>
+<li>使用HTTPS。</li>
+<li>使用拦截器。</li>
+<li>等等...</li>
+</ul>
+
+<h2 id="10">FAQ</h2>
+
+<h4>OkHttp如何设置超时？</h4>
+
+<p>设置超时的方法很简单：</p>
+
+<pre><code>OkHttpClient client = new OkHttpClient.Builder()
+    .connectTimeout(10, TimeUnit.SECONDS)  // 连接超时
+    .writeTimeout(10, TimeUnit.SECONDS)    // Socket写超时
+    .readTimeout(30, TimeUnit.SECONDS)     // Socket读超时
+    .build();
+</code></pre>
+
+<p>注意<code>readTimeout</code>和<code>writeTimeout</code>被用于OkHttp内部的<code>Connection</code>类，用在<code>setSoTimeout</code>方法上来设置<code>Socket</code>。</p>
+
+<p>另外，在2.5.0版本之后，读、写、连接超时的默认值是10s。</p>
+
+<h4>OkHttp是否支持自签名SSL证书？</h4>
+
+<p>支持，需要自定义<code>javax.net.ssl.SSLSocketFactory</code>实例，传给<code>OkHttpClient.setSslSocketFactory(SSLSocketFactory sslSocketFactory)</code>方法。可以使用来自你自己Keystore的证书。</p>
+
+<h4>OkHttp中，Callback的回调方法onFailure和onResponse是在主线程执行码？</h4>
+
+<p>不是，OkHttp是一个Java库，不是Android库，它对Android主线程一无所知，所以这两个回调方法自然是在后台线程执行。实际开发中，常常对OkHttp做二次封装，来直接将结果传递给主线程。</p>
+
+<h4>在OkHttp中可以禁止自动重定向吗？</h4>
+
+<p>在2.3.0版本中提供了设置的方法：</p>
+
+<pre><code>final OkHttpClient client = new OkHttpClient();
+client.setFollowRedirects(false);
+</code></pre>
+
+<p>但在3.x版本中这一方法不存在了，所以暂时没有简单的方法来直接禁止自动重定向。</p>
+
+<h4>OKHttp既有同步api也有异步api，考虑下面两种方法来实现异步请求，有什么区别？哪一种更好？</h4>
+
+<ol>
+<li>使用AsyncTask和OKhttp同步api；</li>
+<li>直接使用OKHttp异步api；</li>
+</ol>
+
+<p>这两种方法区别很大！</p>
+
+<p>为了HTTP请求而使用AsyncTask，在Android中是很糟糕的做法。它会造成很多缺陷，最好避免这样做。例如，你无法在执行期间撤销一个请求。另外，AsyncTask的使用模式常常会泄露Activity的引用，这是Android开发中容易引起内存泄漏的罪魁祸首之一。</p>
+
+<p>OKHttp的异步方法从多个方面来讲都优越得多：</p>
+
+<ol>
+<li>异步api支持本地撤销请求。如果请求是在连接过程中，Callback的引用会被释放，不会再被调用；如果请求还没有开始，则不会被执行。如果你使用的是HTTP/2或者SPDY协议，我们就能实质上的在请求过程中撤销它，节省流量和电量。</li>
+<li>异步api支持给多个请求添加标记，并在一个方法中撤销全部被标记的请求。例如，在一个Activity中做出的所有请求，都可以用该Activity的实例做标记。然后，在onPause或onStop方法中，你可以撤销所有用该Activity实例标记的请求。</li>
+<li>如果你在使用HTTP/2或者SPDY，多个请求或者响应是复用单一连接传输到服务器的，在这种情况下，使用异步调用机制比阻塞的方式要高效得多。所以，如果可以，尽量使用Call.enqueue！</li>
+</ol>
+
+<p>更多问题见<a href="http://stackoverflow.com/questions/tagged/okhttp?sort=active">stackoverflow</a>。</p>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

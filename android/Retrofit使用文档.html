@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Retrofit使用文档</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<h1>Retrofit使用文档</h1>
+
+<h2>Retrofit简介</h2>
+
+<h3>依赖</h3>
+
+<blockquote>
+  <p>compile 'com.squareup.retrofit2:retrofit:2.0.2'</p>
+</blockquote>
+
+<p>如果使用了混淆功能，在proguard文件中添加如下配置：</p>
+
+<pre><code>-dontwarn retrofit2.**
+-keep class retrofit2.** { *; }
+</code></pre>
+
+<h3>功能</h3>
+
+<p>Retrofit将HTTP API转换成Java接口：</p>
+
+<pre><code>public interface GitHubService {
+  @GET("users/{user}/repos")
+  Call&lt;List&lt;Repo&gt;&gt; listRepos(@Path("user") String user);
+}
+</code></pre>
+
+<p>核心类<code>Retrofit</code>能生成上面这个<code>GitHubService</code>接口的实现：</p>
+
+<pre><code>Retrofit retrofit = new Retrofit.Builder()
+    .baseUrl("https://api.github.com/")
+    .build();
+
+GitHubService service = retrofit.create(GitHubService.class);
+</code></pre>
+
+<p><code>GitHubService</code>创建出的<code>Call</code>可以做同步或异步HTTP请求：</p>
+
+<pre><code>Call&lt;List&lt;Repo&gt;&gt; repos = service.listRepos("octocat");
+</code></pre>
+
+<h3>主要特性</h3>
+
+<ul>
+<li>URL参数的替换和对查询参数的支持</li>
+<li>对象到请求体的转换(例如JSON)</li>
+<li>多部分请求体(Multipart request body)和文件上传</li>
+</ul>
+
+<h2>API申明</h2>
+
+<p>通过对接口中方法和方法参数添加注解，来告诉Retrofit如何处理该请求。</p>
+
+<h3>HTTP方法的注解</h3>
+
+<p>接口中的每一个方法，必须有一个注解来指明其对应的HTTP方法以及相对路径。Retrofit支持五种HTTP方法的注解：<code>GET</code>，<code>POST</code>，<code>PUT</code>，<code>DELETE</code>，<code>HEAD</code>。相对URL路径也在注解中指定：</p>
+
+<pre><code>@GET("users/list")
+</code></pre>
+
+<p>users/list</p>
+
+<p>也可以将查询参数直接写死在URL中：</p>
+
+<pre><code>@GET("users/list?sort=desc")
+</code></pre>
+
+<p>users/list?sort=desc</p>
+
+<h3>URL处理</h3>
+
+<p>HTTP请求的URL常常需要动态的设置，可以通过“可替换块”和对方法参数的注解来实现。“可替换块”是形如<code>"{...}"</code>的字符串，相对应的方法参数使用<code>@Path</code>注解。</p>
+
+<pre><code>@GET("group/{id}/users")
+Call&lt;List&lt;User&gt;&gt; groupList(@Path("id") int groupId);
+</code></pre>
+
+<p>调用groupList(10) ----->  group/<strong>10</strong>/users</p>
+
+<p>查询参数也可以动态添加：</p>
+
+<pre><code>@GET("group/{id}/users")
+Call&lt;List&lt;User&gt;&gt; groupList(@Path("id") int groupId, @Query("sort") String sort);
+</code></pre>
+
+<p>调用groupList(10,"desc") ---> group/<strong>10</strong>/users<strong>?sort=desc</strong></p>
+
+<p>对于复杂的查询参数，可以使用<code>Map</code>:</p>
+
+<pre><code>@GET("group/{id}/users")
+Call&lt;List&lt;User&gt;&gt; groupList(@Path("id") int groupId, @QueryMap Map&lt;String, String&gt; options);
+</code></pre>
+
+<h3>请求体</h3>
+
+<p>通过<code>@Body</code>注解，可以指明一个对象作为HTTP请求体：</p>
+
+<pre><code>@POST("users/new")
+Call&lt;User&gt; createUser(@Body User user);
+
+Call&lt;User&gt; createUser(@Body RequestBody body);
+</code></pre>
+
+<p><strong>注意：</strong>HTTP请求体将通过一个转换器(Converter)转换为对应的对象，如果<code>Retrofit</code>实例上没有添加任何转换器，则只能使用<code>RequestBody</code>类。</p>
+
+<h3>表单(Form encoded)和多部分(Multipart)请求</h3>
+
+<p>可以通过注解，让方法发送<code>form-encoded</code>和<code>multipart</code>数据。</p>
+
+<p>要发送<code>form-encoded</code>数据，在方法上使用<code>@FormUrlEncoded</code>注解。每一个键值对是通过参数上的<code>@Field</code>注解实现的。</p>
+
+<pre><code>@FormUrlEncoded
+@POST("user/edit")
+Call&lt;User&gt; updateUser(@Field("first_name") String first, @Field("last_name") String last);
+</code></pre>
+
+<p>多部分请求使用<code>@Multipart</code>注解，每个部分使用<code>@Part</code>注解。</p>
+
+<pre><code>@Multipart
+@PUT("user/photo")
+Call&lt;User&gt; updateUser(@Part("photo") RequestBody photo, @Part("description") RequestBody description);
+</code></pre>
+
+<p>多部分请求体可以使用<code>Retrofit</code>的转换器，也可以自己实现<code>RequestBody</code>类来自行处理序列化过程。</p>
+
+<h3>标头(Header)的处理</h3>
+
+<p>可以使用<code>@Header</code>注解来设置固定的请求头：</p>
+
+<p>单个：</p>
+
+<pre><code>@Headers("Cache-Control: max-age=640000")
+@GET("widget/list")
+Call&lt;List&lt;Widget&gt;&gt; widgetList();
+</code></pre>
+
+<p>多个：</p>
+
+<pre><code>@Headers({
+    "Accept: application/vnd.github.v3.full+json",
+    "User-Agent: Retrofit-Sample-App"
+})
+@GET("users/{username}")
+Call&lt;User&gt; getUser(@Path("username") String username);
+</code></pre>
+
+<p>注意请求头不会互相覆盖，同样名称的请求头会全部包含在请求中。</p>
+
+<p>请求头也可以使用<code>@Header</code>注解来动态修改，如果方法参数是<code>null</code>，请求头会被忽略，否则，会使用对象的<code>toString</code>方法作为请求头的值。</p>
+
+<pre><code>@GET("user")
+Call&lt;User&gt; getUser(@Header("Authorization") String authorization)
+</code></pre>
+
+<p><strong>提示：</strong>每一个请求都需要添加的标头，可以使用<a href="https://github.com/square/okhttp/wiki/Interceptors">OkHttp拦截器</a>。</p>
+
+<h3>同步和异步</h3>
+
+<p><code>Call</code>对象可以同步执行，也可以异步执行。每个实例只能执行一次，但通过<code>clone()</code>方法，能创建一个可执行的新实例。</p>
+
+<p>在Android上，回调会在主线程调用；在JVM上，回调会在执行请求的线程调用。</p>
+
+<h2>Retrofit的配置</h2>
+
+<p><code>Retrofit</code>有一个健全的默认配置，同时也提供了灵活的手段来修改配置。</p>
+
+<h3>转换器</h3>
+
+<p>默认情况下，Retrofit只能将HTTP消息头反序列化成OkHttp的<code>ResponseBody</code>类型，它的<code>@Body</code>注解也只接受<code>RequestBody</code>类型。</p>
+
+<p>可以通过添加转换器来支持其他类型。Retrofit提供了如下几个模块，来适配流行的序列化库：</p>
+
+<ul>
+<li><strong>Gson</strong>: com.squareup.retrofit2:converter-gson</li>
+<li><strong>Jackson</strong>: com.squareup.retrofit2:converter-jackson</li>
+<li><strong>Moshi</strong>: com.squareup.retrofit2:converter-moshi</li>
+<li><strong>Protobuf</strong>: com.squareup.retrofit2:converter-protobuf</li>
+<li><strong>Wire</strong>: com.squareup.retrofit2:converter-wire</li>
+<li><strong>Simple XML</strong>: com.squareup.retrofit2:converter-simplexml</li>
+<li><strong>Scalars (primitives, boxed, and String)</strong>: com.squareup.retrofit2:converter-scalars</li>
+</ul>
+
+<p>下面是使用<code>GsonConverterFactory</code>的例子，来生成前文中提到的<code>GitHubService</code>接口，它使用Gson库来做转换：</p>
+
+<pre><code>Retrofit retrofit = new Retrofit.Builder()
+    .baseUrl("https://api.github.com")
+    .addConverterFactory(GsonConverterFactory.create())
+    .build();
+
+GitHubService service = retrofit.create(GitHubService.class);
+</code></pre>
+
+<h3>自定义转换器</h3>
+
+<p>如果你的服务器API使用了其它的数据格式(例如YAML，txt)，或者针对已有的格式，你想使用不同的库来实现，你可以很容易地创建自己的转换器。创建一个类，继承<code>Converter.Factory</code>，在实例化<code>Retrofit</code>时传入。</p>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
