@@ -35,6 +35,7 @@
       2. 语法
          1. [Markdown 语法说明](http://www.appinn.com/markdown/index.html)
          2. [GitHub上README.md教程](http://blog.csdn.net/kaitiren/article/details/38513715)
+         3. [html转markdown](http://tool.lu/markdown/)
    6. 学习
       1. [慕课网](http://www.imooc.com/)
       2. [牛课网](http://www.nowcoder.com/)
@@ -63,7 +64,6 @@
    1. gradle
       1. [windown下安装文档](gradle/window_install_3.1.md)
       2. [中文手册](http://pkaq.org/gradledoc/docs/userguide/userguide.html)
-      3. [html转markdown](http://tool.lu/markdown/)
    2. AndroidStudio
       1. 快捷键
       2. [mac下android studio 常用快捷键](http://www.jianshu.com/p/55e262b272b0)
