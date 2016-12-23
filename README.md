@@ -89,7 +89,7 @@
       5. [Android开源项目](android/opensource.md)
       6. [MVP](android/mvp.md)
       7. [Mosby](android/mosby.md)
-      8. [okhttp](android/okhttp.md)
+      8. [OkHttp](android/okhttp.md)
       9. [Retrofit](android/Retrofit.md)
       10. [RxJava 2](https://realm.io/)
       11. [ButterKnife](android/ButterKnife.md)
@@ -101,7 +101,7 @@
       3. CSS3
       4. Javacripte
       5. JQuery
-      6. [bootstrap](http://getbootstrap.com/)
+      6. [Bootstrap](http://getbootstrap.com/)
 
    4. R语言
 
@@ -132,8 +132,8 @@
       5. [安卓系统](http://www.52pojie.cn/thread-247937-1-1.html)
 
    8. 博客
-      1. [ANDROID干货](http://www.cnblogs.com/tianmanyi/p/5509404.html)
-      2. [android开发各种相关干货](http://blog.csdn.net/aishang5wpj/article/details/50130573)
+      1. [Android干货](http://www.cnblogs.com/tianmanyi/p/5509404.html)
+      2. [Android开发各种相关干货](http://blog.csdn.net/aishang5wpj/article/details/50130573)
       3. [干货集中营共享android端知识点综合整理](http://blog.csdn.net/lupengfei1009/article/details/50826442)
 
       ​
