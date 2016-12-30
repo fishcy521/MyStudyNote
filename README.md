@@ -22,6 +22,9 @@
       4. [MateriaPalette](http://www.materialpalette.com)
       5. [Google Design Spec](https://www.google.com/design/spec/material-design/introduction.html)
       6. [vysor-beta](https://chrome.google.com/webstore/detail/vysor-beta)
+      7. 即使通讯
+         1. [环信](http://www.easemob.com/)
+         2. [融云](http://www.rongcloud.cn/)
    3. 插件下载
       1. [Maven](http://search.maven.org)
    4. API数据
