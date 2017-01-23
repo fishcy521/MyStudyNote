@@ -75,7 +75,7 @@
          1. [Win快捷键 Win Keymap](https://resources.jetbrains.com/assets/products/intellij-idea/IntelliJIDEA_ReferenceCard.pdf)
          2. [Mac OS 快捷键 Mac OS Keymap](https://resources.jetbrains.com/assets/products/intellij-idea/IntelliJIDEA_ReferenceCard_mac.pdf)
       2. 激活server
-         1. [server1]([http://idea.iteblog.com/key.php](http://idea.iteblog.com/key.php))
+         1. [server1](http://idea.iteblog.com/key.php)
    4. 设计工具
       1. [百度脑图](http://naotu.baidu.com/)
 
