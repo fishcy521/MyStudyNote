@@ -129,6 +129,8 @@
       6. [Android-InterView](https://github.com/paceboy/Android-InterView.git)
       7. [Android面试试题](https://github.com/solaris0403/Android-Interview.git)
       8. [sumk框架](https://github.com/youtongluan/sumk.git)
+      9. [JFinal框架](https://github.com/jfinal/jfinal)
+      10. [Charisma框架](https://github.com/usmanhalalit/charisma)
 
    7. 常见问题总结
 
