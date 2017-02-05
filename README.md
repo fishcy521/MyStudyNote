@@ -70,6 +70,7 @@
       2. [mac下android studio 常用快捷键](http://www.jianshu.com/p/55e262b272b0)
       3. [Android Studio Mac版快捷键](http://blog.csdn.net/swust_chenpeng/article/details/46663749)
       4. [max和windows&linux快捷键](androidstudio/androidsutdio_keymap.md)
+      5. [AndroidStudio2.0的个人设置](http://www.jianshu.com/p/873cd6a1e3d3)
    3. IntelliJ IDEA
       1. 快捷键
          1. [Win快捷键 Win Keymap](https://resources.jetbrains.com/assets/products/intellij-idea/IntelliJIDEA_ReferenceCard.pdf)
@@ -126,6 +127,7 @@
       5. [Android面试复习](https://github.com/envyfan/AndroidReview.git)
       6. [Android-InterView](https://github.com/paceboy/Android-InterView.git)
       7. [Android面试试题](https://github.com/solaris0403/Android-Interview.git)
+      8. [sumk框架](https://github.com/youtongluan/sumk.git)
 
    7. 常见问题总结
 
