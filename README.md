@@ -60,6 +60,7 @@
       20. [Bmob移动云服务](http://www.bmob.cn/)
       21. [菜鸟教程](http://www.runoob.com/)
       22. [swagger官网](http://swagger.io/)
+      23. [W3School](http://www.w3school.com.cn/index.html)
 
 3. 开发工具
    1. gradle
@@ -106,6 +107,9 @@
       3. CSS3
       4. Javacripte
       5. JQuery
+         1. [jQueryAPI3.1 中文文档](http://jquery.cuishifeng.cn/)
+         2. [jQuery API 中文文档](http://www.jquery123.com/)
+         3. [JQuery school](http://www.jq-school.com/)
       6. [Bootstrap](http://getbootstrap.com/)
 
    4. R语言
