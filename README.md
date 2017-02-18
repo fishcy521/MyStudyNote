@@ -31,6 +31,7 @@
       1. [JSON API免费接口](http://www.bejson.com/knownjson/webInterface/)
       2. [聚合数据](https://www.juhe.cn/)
       3. [干货集中营](http://gank.io/)
+      4. [和风天气](http://www.heweather.com/)
    5. markdown
       1. [在线编辑器](http://mahua.jser.me/)
       2. 语法
