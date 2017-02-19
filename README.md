@@ -77,9 +77,13 @@
       1. 快捷键
          1. [Win快捷键 Win Keymap](https://resources.jetbrains.com/assets/products/intellij-idea/IntelliJIDEA_ReferenceCard.pdf)
          2. [Mac OS 快捷键 Mac OS Keymap](https://resources.jetbrains.com/assets/products/intellij-idea/IntelliJIDEA_ReferenceCard_mac.pdf)
-      2. 激活server
-         1. [server1](http://idea.iteblog.com/key.php)
-   4. 设计工具
+      2. [激活](jetbrains/idea.md)
+   4. WebStorm
+      1. [激活](jetbrains/webstorm.md)
+   5. PhpStorm
+   6. PyCharm
+   7. RubyMine
+   8. 设计工具
       1. [百度脑图](http://naotu.baidu.com/)
 
 4. 学习笔记整理和搜集
