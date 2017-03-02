@@ -113,6 +113,8 @@
       1. Node.js
       2. HTML5
          1. [51web](http://www.5iweb.com.cn/)
+         2. [html5中国](http://www.html5cn.org/)
+         3. [w3cshool](http://www.w3cschool.cn/)
       3. CSS3
       4. Javacripte
       5. JQuery
