@@ -63,6 +63,8 @@
       22. [swagger官网](http://swagger.io/)
       23. [W3School](http://www.w3school.com.cn/index.html)
       24. [前端里](http://www.yyyweb.com/)
+   7. 其他
+      1. [微企点](http://www.wqdian.com)
 
 3. 开发工具
    1. gradle
